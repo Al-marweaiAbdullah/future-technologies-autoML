@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+data/_check/
+.DS_Store
+
+# originele gsm foto's (854 MB), verkleinde versies staan in data/tm_upload/
+data/eigen/

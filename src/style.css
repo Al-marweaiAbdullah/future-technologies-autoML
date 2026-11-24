@@ -1,0 +1,190 @@
+/*
+  Visuele taal: de vier vormen (▲ rood, ● blauw, ■ groen, ★ geel) dragen de kleur,
+  zodat alles ook zonder kleurzicht leesbaar blijft. Lichte, frisse basis,
+  felle kleuren enkel waar ze iets betekenen.
+*/
+:root {
+  --bg: #f2f4f8;
+  --vlak: #ffffff;
+  --inkt: #15171f;
+  --dim: #646a7a;
+  --lijn: #dfe3ec;
+
+  --rood: #f2342b;
+  --blauw: #1f6bff;
+  --groen: #14a94a;
+  --geel: #ffc914;
+
+  --accent: var(--inkt);
+  --kaart: var(--vlak);
+  --tekst: var(--inkt);
+
+  --r-groot: 28px;
+  --r-mid: 18px;
+  --r-klein: 12px;
+
+  --veer: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  color-scheme: light;
+  font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  font-optical-sizing: auto;
+  background: var(--bg);
+  color: var(--inkt);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+.pagina {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: max(12px, env(safe-area-inset-top)) 18px max(40px, env(safe-area-inset-bottom));
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+h2 {
+  font-size: 44px;
+  margin: 6px 0 18px;
+}
+
+.terug {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dim);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blauw);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Knoppen */
+.knop {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 16px 22px;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  background: var(--inkt);
+  color: #fff;
+  width: 100%;
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--veer),
+    opacity 0.2s;
+}
+.knop:active {
+  transform: scale(0.96);
+}
+.knop:disabled {
+  opacity: 0.35;
+}
+.knop.klein {
+  width: auto;
+  padding: 10px 16px;
+  font-size: 15px;
+  background: var(--vlak);
+  color: var(--inkt);
+  box-shadow: inset 0 0 0 2px var(--lijn);
+}
+.knop.groot {
+  width: auto;
+  font-size: 18px;
+  padding: 18px 28px;
+  background: #fff;
+  color: var(--inkt);
+}
+.knop.midden {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+
+.instellingen {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+  color: var(--dim);
+  font-size: 14px;
+}
+input[type='range'] {
+  width: 100%;
+  accent-color: var(--inkt);
+}
+
+.veld {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+  color: var(--dim);
+  font-size: 14px;
+  font-weight: 600;
+}
+.veld input,
+.invoer {
+  font: inherit;
+  font-size: 17px; /* 16px+ voorkomt inzoomen op iOS */
+  padding: 14px 16px;
+  border-radius: var(--r-mid);
+  border: 2px solid var(--lijn);
+  background: var(--vlak);
+  color: var(--inkt);
+  width: 100%;
+}
+.veld input:focus,
+.invoer:focus {
+  outline: none;
+  border-color: var(--inkt);
+}
+
+.fout {
+  color: #c4160e;
+  font-weight: 600;
+}
+
+/* Pagina overgang (reactie op navigatie) */
+.pagina-enter-active,
+.pagina-leave-active {
+  transition:
+    opacity 0.22s,
+    transform 0.28s var(--veer);
+}
+.pagina-enter-from {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.pagina-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
